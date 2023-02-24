@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header class="flex h-28 items-center justify-between bg-sky-500 ">
+      <div class=" flex order-1 ml-3.5 w-70 items-center">
+
+        <div class="ml-6">
+          <div class="hidden md:flex">
+            <p class="text-lg font-serif">Мини конструктор</p>
+          </div>
+        </div>
+      </div>
+
+      <nav class="md:flex order-last">
+        <ul class="md:inline-flex block">
+          <li class=" ml-9 mr-12 font-serif text-lg" v-for="header in headers" :key="header.name">
+            <router-link :to="header.to">{{ header.name }}</router-link>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <router-view/>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
+  data() {
+    return {
+      headers: [{
+        to: "/",
+        name: "Главная"
+      },
+        {
+          to: "/create",
+          name: "Создать"
+        }
+      ],
+    }
   }
 }
-</script>
 
+</script>
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+header {
+
+  height: 100%;
 }
+body{
+  background-color: rgb(221 214 254);
+}
+
 </style>
