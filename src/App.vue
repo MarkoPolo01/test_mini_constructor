@@ -5,7 +5,7 @@
 
         <div class="ml-6">
           <div class="hidden md:flex">
-            <p class="text-lg font-serif">Мини конструктор</p>
+            <p class="text-lg font-serif">Доска фильмов Drag and drop</p>
           </div>
         </div>
       </div>

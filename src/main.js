@@ -6,6 +6,7 @@ import './assets/tailwind.css'
 
 Vue.config.productionTip = false
 store.dispatch('fetchCarts')
+store.dispatch('fetchFilms')
 new Vue({
   router,
   store,

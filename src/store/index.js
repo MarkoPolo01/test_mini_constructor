@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    carts:[]
+    carts:[],
+    films:[]
   },
   getters: {
     cartsById: s => id =>s.carts.find(t => t.id === id)
@@ -13,6 +14,9 @@ export default new Vuex.Store({
   mutations: {
     fetchCarts(state,carts){
       state.carts =carts;
+    },
+    fetchFilms(state,films){
+      state.films =films;
     },
     addCarts(state,carts){
       state.carts.push(carts)
@@ -38,7 +42,12 @@ export default new Vuex.Store({
       fetch('/carts.json')
           .then(response =>response.json())
           .then(carts => context.commit('fetchCarts',carts));
-      console.log(this.carts);
+    },
+    fetchFilms(context){
+      fetch("https://api.themoviedb.org/3/movie/popular?api_key=c1f350f7c6ec8b7e0821e6c106120082")
+          .then(response =>response.json())
+          .then(films => context.commit('fetchFilms',films));
+      console.log('FetchCino');
     }
 
 

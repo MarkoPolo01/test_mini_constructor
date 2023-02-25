@@ -1,16 +1,16 @@
 <template>
   <div class="grid justify-center mt-20 ">
-    <DragDrop/>
+    <CreateForm class="w-80"/>
 
   </div>
 
 </template>
 <script>
 
-import DragDrop from "@/components/DragDrop"
+import CreateForm from "@/components/CreateForm"
 export default {
   components:{
-    DragDrop
+    CreateForm
   }
 }
 
