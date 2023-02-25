@@ -1,5 +1,5 @@
 <template>
-  <div >
+  <div>
     <div class="mt-10 sm:mt-0">
       <div class="md:grid md:grid-cols-1 md:gap-6">
         <div class="mt-5 md:col-span-2 md:mt-0">
@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import {mapMutations} from "vuex";
 
 export default {
   data() {
@@ -52,7 +52,7 @@ export default {
         description: this.description,
         id: Date.now()
       });
-      this.title = this.description =  "";
+      this.title = this.description = "";
       this.$router.push('/')
     }
   }

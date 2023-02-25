@@ -5,26 +5,26 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path:'/',
-    name:'home',
-    component:()=> import('@/views/HomeView')
-  },
-  {
-    path:'/create',
-    name:'create',
-    component:()=> import('@/views/CreateView')
-  },
-  {
-    path:'/cart/:id',
-    name:'cart',
-    component:()=> import('@/views/CartEdit')
-  }
+    {
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/HomeView')
+    },
+    {
+        path: '/create',
+        name: 'create',
+        component: () => import('@/views/CreateView')
+    },
+    {
+        path: '/cart/:id',
+        name: 'cart',
+        component: () => import('@/views/CartEdit')
+    }
 
 ]
 
 const router = new VueRouter({
-  routes
+    routes
 })
 
 export default router
