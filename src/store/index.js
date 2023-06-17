@@ -9,47 +9,36 @@ export default new Vuex.Store({
         films: []
     },
     getters: {
-        cartsById: s => id => s.carts.find(t => t.id === id)
+        cartsById: state => id => state.carts.find(cart => cart.id === id)
     },
     mutations: {
-        fetchCarts(state, carts) {
-            state.carts = carts;
-        },
         fetchFilms(state, films) {
             state.films = films;
         },
-        addCarts(state, carts) {
-            state.carts.push(carts)
+        addCarts(state, cart) {
+            state.carts.push(cart);
+            localStorage.setItem('carts', JSON.stringify(state.carts));
         },
-        removeCarts(state, {id}) {
-            const idx = state.carts.findIndex(t => t.id === id)
+        removeCarts(state, { id }) {
+            const idx = state.carts.findIndex(cart => cart.id === id);
             state.carts.splice(idx, 1);
-
+            localStorage.setItem('carts', JSON.stringify(state.carts));
         },
-        updateCarts(state, {title, description, id}) {
-            const carts = state.carts.concat()
-            const idx = carts.findIndex(t => t.id === id)
-            const cart = carts[idx]
-
-            carts[idx] = {...cart, title, description}
-
-            state.carts = carts
-
+        updateCarts(state, { title, description, id }) {
+            const idx = state.carts.findIndex(cart => cart.id === id);
+            const cart = state.carts[idx];
+            const updatedCart = { ...cart, title, description };
+            Vue.set(state.carts, idx, updatedCart);
+            localStorage.setItem('carts', JSON.stringify(state.carts));
         }
     },
     actions: {
-        fetchCarts(context) {
-            fetch('/carts.json')
-                .then(response => response.json())
-                .then(carts => context.commit('fetchCarts', carts));
-        },
         fetchFilms(context) {
             fetch("https://api.themoviedb.org/3/movie/popular?api_key=c1f350f7c6ec8b7e0821e6c106120082")
                 .then(response => response.json())
                 .then(films => context.commit('fetchFilms', films));
         }
-
-
     },
     modules: {}
 })
+

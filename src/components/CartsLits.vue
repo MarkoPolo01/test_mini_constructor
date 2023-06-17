@@ -1,62 +1,57 @@
 <template>
   <div>
-    <div class="flex h-24 w-full items-center mt-10  bg-sky-500 ">
+    <div class="flex h-24 w-full items-center mt-10 bg-sky-500">
       <div class="ml-6">
-        <div class=" md:flex flex-row ">
+        <div class="md:flex flex-row">
           <p class="text-lg font-serif">Рекомендации</p>
-          <button v-on:click="broad" class=" bg-indigo-600 text-white rounded ml-6">Показать/скрыть редактирование
+          <button v-on:click="broad" class="bg-indigo-600 text-white rounded ml-6">
+            Показать/скрыть редактирование
           </button>
         </div>
       </div>
     </div>
-    <CreateForm class=" ml-9 w-80 mt-4"/>
-    <div class="grid  grid-cols-1 lg:grid-cols-6 md:grid-cols-2 ">
+    <CreateForm class="ml-9 w-80 mt-4" />
+    <div class="grid grid-cols-1 lg:grid-cols-6 md:grid-cols-2">
       <CartsElem
-          v-for="(carte,i) in carts" :key="carte.id"
-          v-bind:carts="carte"
-          v-bind:id="i"
+          v-for="(carte, i) in carts"
+          :key="carte.id"
+          :carts="carte"
+          :id="i"
           v-on:remove-carts="removeCart"
-          v-bind:editing="editing"
+          :editing="editing"
       />
     </div>
   </div>
 </template>
+
 <script>
-import {mapState} from 'vuex';
-import {mapMutations} from "vuex";
+import { mapState, mapMutations } from "vuex";
 import CartsElem from "./CartsElem";
 import CreateForm from "@/components/CreateForm";
 
 export default {
-  name: 'ShareLits',
+  name: "ShareLits",
   components: {
     CartsElem,
-    CreateForm
+    CreateForm,
   },
   data() {
     return {
       editing: true,
-    }
+    };
   },
-  computed: mapState({
-    count: state => state.carts.length,
-    carts: 'carts'
-  }),
+  computed: {
+    ...mapState(["carts"]),
+  },
   methods: {
     ...mapMutations(["removeCarts"]),
     removeCart(id) {
-      this.removeCarts({
-        id: id
-      })
-      console.log(id)
+      this.removeCarts({ id });
     },
     broad() {
-      if (this.editing) {
-        this.editing = false;
-      } else
-        this.editing = true
+      this.editing = !this.editing;
+    },
+  },
 
-    }
-  }
-}
+};
 </script>
